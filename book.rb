@@ -11,7 +11,7 @@ class Book < Item
   end
 
   def can_be_archived?
-    @publish_date >= 10 || @cover_state == 'bad'
+    (Time.now.year - @publish_date.to_i) >= 10 || @cover_state == 'bad'
   end
 
   def to_json(*args)

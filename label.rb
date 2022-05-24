@@ -1,7 +1,7 @@
 require 'json'
 
 class Label
-  attr_accessor :title, :color, :id
+  attr_accessor :title, :color, :id, :items
 
   def initialize(title, color)
     @id = Random.rand(1..1000)
