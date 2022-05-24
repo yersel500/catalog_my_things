@@ -2,7 +2,7 @@ class Author
   attr_reader :first_name, :last_name, :items
 
   def initialize(first_name, last_name)
-    @id = rand(100_000)
+    @id = rand(1..100_000)
     @first_name = first_name
     @last_name = last_name
     @items = []
