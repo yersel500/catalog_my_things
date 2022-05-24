@@ -2,7 +2,7 @@ require './item_class'
 require 'json'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state
+  attr_accessor :publisher, :cover_state, :id
 
   def initialize(genre, author, label, publish_date, publisher, cover_state)
     super(genre, author, label, publish_date)
@@ -14,7 +14,7 @@ class Book < Item
     @publish_date >= 10 || @cover_state == 'bad'
   end
 
-  def to_json(*_args)
+  def to_json(*args)
     {
       JSON.create_id => self.class.name,
       'id' => @id,
@@ -24,6 +24,6 @@ class Book < Item
       'publish_date' => @publish_date,
       'publisher' => @publisher,
       'cover_state' => @cover_state
-    }
+    }.to_json(*args)
   end
 end

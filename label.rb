@@ -1,5 +1,7 @@
+require 'json'
+
 class Label
-  attr_accessor :title, :color
+  attr_accessor :title, :color, :id
 
   def initialize(title, color)
     @id = Random.rand(1..1000)
@@ -13,12 +15,12 @@ class Label
     @items << item
   end
 
-  def to_json(*_args)
+  def to_json(*args)
     {
       JSON.create_id => self.class.name,
       'id' => @id,
       'title' => @title,
       'color' => @color
-    }
+    }.to_json(*args)
   end
 end

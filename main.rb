@@ -2,6 +2,7 @@ require './app'
 require './label'
 require './item_class'
 require './book'
+require 'json'
 
 def create_book_ui(catalog)
   puts 'Enter genre'
@@ -54,6 +55,7 @@ def run(catalog)
     when '4'
       create_book_ui(catalog)
     when '5'
+      catalog.save_data
       break
     end
   end
@@ -61,6 +63,7 @@ end
 
 def main
   catalog = App.new
+  catalog.load_data
   run(catalog)
 end
 
