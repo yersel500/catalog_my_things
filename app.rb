@@ -96,6 +96,15 @@ class App
     puts ''
   end
 
+  def list_genres
+    @genres.each { |genre| print "#{genre.name} " }
+    puts ''
+  end
+
+  def list_albums
+    @music_albums.each { |album| puts "#{album.author} #{album.on_spotify}" }
+  end
+
   def list_books
     @books.each { |book| puts "#{book.author} #{book.publisher}" }
   end
