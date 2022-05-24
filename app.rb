@@ -102,6 +102,7 @@ class App
     puts 'MM-DD-YYYY: '
     publish_date = gets.chomp
     puts "Is this album on Spotify? \n"
+    puts 'y/n: '
     case gets.chomp
     when 'y'
       on_spotify = true
