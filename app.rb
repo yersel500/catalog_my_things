@@ -1,14 +1,44 @@
 require './item_class'
 require './book'
 require './label'
+require './music_album'
+require './genre'
 require 'json'
 
 class App
-  attr_accessor :labels, :books
+  attr_accessor :labels, :books, :genres, :music_albums
 
   def initialize
     @labels = []
     @books = []
+    @genres = []
+    @music_albums = []
+  end
+
+  def load_albums
+    if File.exist?('music_albums.json')
+      data = JSON.parse(File.read('music_albums.json'))
+      data.each do |album|
+        music_albums = MusicAlbum.new(album['genre'], album['author'], album['label'], album['publish_date'], album['on_spotify'])
+        music_albums.id = album['id']
+        @books << music_albums
+      end
+    else
+      []
+    end
+  end
+
+  def load_genres
+    if File.exist?('genres.json')
+      data = JSON.parse(File.read('genres.json'))
+      data.each do |genre|
+        my_genre = Genre.new(genre['title'], genre['color'])
+        my_genre.id = genre['id']
+        @genres << my_genre
+      end
+    else
+      []
+    end
   end
 
   def load_labels
@@ -40,7 +70,9 @@ class App
 
   def load_data
     load_labels
+    load_genres
     load_books
+    load_albums
   end
 
   def create_label(title, color)
@@ -62,6 +94,8 @@ class App
 
   def save_data
     File.write('label.json', JSON.generate(@labels))
+    File.write('genres.json', JSON.generate(@genres))
     File.write('item.json', JSON.generate(@books))
+    File.write('music_albums.json', JSON.generate(@music_albums))
   end
 end
