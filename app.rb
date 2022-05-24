@@ -79,6 +79,14 @@ class App
     @labels << Label.new(title, color)
   end
 
+  def create_genre(name)
+    @genres << Genre.new(name)
+  end
+
+  def create_album(genre, author, label, publish_date, on_spotify)
+    @music_albums << MusicAlbum.new(genre, author, label, publish_date, on_spotify)
+  end
+
   def create_book(genre, author, label, publish_date, publisher, cover_state) # rubocop:disable Metrics/ParameterLists
     @books << Book.new(genre, author, label, publish_date, publisher, cover_state)
   end
