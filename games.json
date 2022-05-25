@@ -1,1 +1,1 @@
-[]
+[{"json_class":"Game","id":193,"genre":{"json_class":"Genre","id":171,"name":"rock"},"author":{"json_class":"Author","id":97074,"first_name":"Thiago","last_name":"Ponce"},"label":{"json_class":"Label","id":673,"title":"Gift","color":"blue"},"publish_date":"50/05/1999","multiplayer":true,"last_played_at":"05/25/2022","archived":false}]
