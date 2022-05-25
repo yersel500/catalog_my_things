@@ -274,6 +274,6 @@ class App # rubocop:disable Metrics/ClassLength
     File.write('games.json', JSON.generate(@games))
     File.write('authors.json', JSON.generate(@authors))
     File.write('music_albums.json', JSON.generate(@music_albums))
-    # abort('Thanks for using the app, see you later!')
+    abort('Thanks for using the app, see you later!')
   end
 end

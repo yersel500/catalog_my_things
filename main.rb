@@ -20,9 +20,11 @@ def options
   11) Add a game
   12) Add an author
   13) Exit'
+  option = gets.chomp.to_i
+  run(option)
 end
 
-def run(catalog)
+def run(option)
   option_catalog = %w[list_books list_labels list_genres list_albums list_authors list_games
                       create_label
                       create_genre
@@ -33,19 +35,17 @@ def run(catalog)
                       save_data]
 
   if option.between?(1, 13)
-    catalog.send(option_catalog[option - 1])
+    @catalog.send(option_catalog[option - 1])
   else
     puts 'Invalid option, try again'
   end
-  option = gets.chomp.to_i
   options
 end
 
 def main
-  catalog = App.new
-  catalog.load_data
+  @catalog = App.new
+  @catalog.load_data
   options
-  run(catalog)
 end
 
 main
