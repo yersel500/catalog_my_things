@@ -22,6 +22,28 @@ CREATE TABLE music_albums (
     CONSTRAINT fk_author FOREIGN KEY(author_id) REFERENCES authors(id)
 );
 
+DROP TABLE IF EXISTS author;
+CREATE TABLE author (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL
+    last_name VARCHAR(100) NOT NULL
+)
+
+DROP TABLE IF EXISTS  game;
+CREATE TABLE game(
+    id SERIAL PRIMARY KEY,
+    genre INT,
+    author INT,
+    label INT,
+    publish_date    DATE NOT NULL,
+    archived        BOOLEAN NOT NULL,
+    last_played_at  DATE NOT NULL,
+	multiplayer     BOOLEAN NOT NULL,
+    CONSTRAINT fk_genre FOREIGN KEY(genre) REFERENCES genres(id)
+    CONSTRAINT fk_labels FOREIGN KEY(label) REFERENCES labels(id)
+    CONSTRAINT fk_author FOREIGN KEY(author) REFERENCES authors(id)
+);
+
 INSERT INTO genres (name) VALUES ('Rock');
 INSERT INTO genres(name) VALUES ('Metal');
 
