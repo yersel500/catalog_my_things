@@ -19,18 +19,24 @@ class App # rubocop:disable Metrics/ClassLength
     @games = []
   end
 
+  def params(item)
+    genre = Genre.new(item['genre']['name'])
+    genre.id = item['genre']['id']
+    author = Author.new(item['author']['first_name'], item['author']['last_name'])
+    author.id = item['author']['id']
+    label = Label.new(item['label']['title'], item['label']['color'])
+    label.id = item['label']['id']
+
+    [genre, author, label]
+  end
+
   def load_albums
     if File.exist?('music_albums.json')
       data = JSON.parse(File.read('music_albums.json'))
       data.each do |album|
-        genre = Genre.new(album['genre']['name'])
-        genre.id = album['genre']['id']
-        author = Author.new(album['author']['first_name'], album['author']['last_name'])
-        author.id = album['author']['id']
-        label = Label.new(album['label']['title'], album['label']['color'])
-        label.id = album['label']['id']
-        music_album = MusicAlbum.new(genre, author, label, album['publish_date'],
-                                     album['on_spotify'])
+        genre, author, label = params(album)
+
+        music_album = MusicAlbum.new(genre, author, label, album['publish_date'], album['on_spotify'])
         music_album.id = album['id']
         @music_albums << music_album
       end
@@ -69,14 +75,8 @@ class App # rubocop:disable Metrics/ClassLength
     if File.exist?('item.json')
       data = JSON.parse(File.read('item.json'))
       data.each do |item|
-        genre = Genre.new(item['genre']['name'])
-        genre.id = item['genre']['id']
-        author = Author.new(item['author']['first_name'], item['author']['last_name'])
-        author.id = item['author']['id']
-        label = Label.new(item['label']['title'], item['label']['color'])
-        label.id = item['label']['id']
-        my_item = Book.new(genre, author, label, item['publish_date'], item['publisher'],
-                           item['cover_state'])
+        genre, author, label = params(item)
+        my_item = Book.new(genre, author, label, item['publish_date'], item['publisher'], item['cover_state'])
         my_item.id = item['id']
         @books << my_item
       end
@@ -89,14 +89,8 @@ class App # rubocop:disable Metrics/ClassLength
     if File.exist?('games.json')
       data = JSON.parse(File.read('games.json'))
       data.each do |new_game|
-        genre = Genre.new(new_game['genre']['name'])
-        genre.id = new_game['genre']['id']
-        author = Author.new(new_game['author']['first_name'], new_game['author']['last_name'])
-        author.id = new_game['author']['id']
-        label = Label.new(new_game['label']['title'], new_game['label']['color'])
-        label.id = new_game['label']['id']
-        game = Game.new(genre, author, label, new_game['publish_date'],
-                        new_game['multiplayer'], new_game['last_played_at'])
+        genre, author, label = params(new_game)
+        game = Game.new(genre, author, label, new_game['publish_date'], new_game['multiplayer'], new_game['last_played_at'])
         game.id = new_game['id']
         game.archived = new_game['archived']
         @games << game
