@@ -35,12 +35,6 @@ To run the tests on the project,
 - Twitter: [@LeccaJoaquin](https://twitter.com/LeccaJoaquin)
 - LinkedIn: [Joaquín Garrido Lecca Zanetti](https://www.linkedin.com/in/joaquin-garrido-lecca-zanetti/)
 
-### 👤 **Richard Opiyo**
-
-- GitHub: [@richardoppiyo](https://github.com/richardoppiyo)
-- Twitter: [@blessed_ricky](https://twitter.com/blessed_ricky)
-- LinkedIn: [Richard Opiyo](https://linkedin.com/in/richardoppiyo) 
-
  ## 🤝 Contributing
 
  Contributions, issues, and feature requests are welcome!
