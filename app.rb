@@ -201,7 +201,7 @@ class App # rubocop:disable Metrics/ClassLength
 
     @music_albums.each_with_index do |album, index|
       puts "(#{index}) on #{album.publish_date}, #{album.author.first_name} #{album.author.last_name}"
-      puts "    created a #{album.genre.name} album which is on spotify! (#{album.on_spotify}) now it is #{album.label.title}"
+      puts "created a #{album.genre.name} album which is on spotify(#{album.on_spotify}) now it is #{album.label.title}"
       puts ''
     end
   end
@@ -212,7 +212,7 @@ class App # rubocop:disable Metrics/ClassLength
 
     @books.each_with_index do |book, index|
       puts "(#{index}) on #{book.publish_date}, #{book.author.first_name} #{book.author.last_name}"
-      puts "    created a #{book.genre.name} book thanks to #{book.publisher}, now it is #{book.label.title}"
+      puts "created a #{book.genre.name} book thanks to #{book.publisher}, now it is #{book.label.title}"
       puts ''
     end
   end
@@ -222,7 +222,7 @@ class App # rubocop:disable Metrics/ClassLength
 
     @games.each_with_index do |game, index|
       puts "(#{index}) on #{game.publish_date}, #{game.author.first_name} #{game.author.last_name}"
-      puts "    created a #{game.genre.name} game, last played on #{game.last_played_at} (#{game.label.title})"
+      puts "created a #{game.genre.name} game, last played on #{game.last_played_at} (#{game.label.title})"
     end
   end
 
