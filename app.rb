@@ -250,19 +250,19 @@ class App # rubocop:disable Metrics/ClassLength
   def select_author
     puts 'Select an author from the list:'
     list_authors
-    @authors[gets.chomp.to_i]
+    @authors[gets.chomp.to_i - 1]
   end
 
   def select_genre
     puts 'Select a genre from the list:'
     list_genres
-    @genres[gets.chomp.to_i]
+    @genres[gets.chomp.to_i - 1]
   end
 
   def select_label
     puts 'Select an label from the list:'
     list_labels
-    @labels[gets.chomp.to_i]
+    @labels[gets.chomp.to_i - 1]
   end
 
   def select_date
