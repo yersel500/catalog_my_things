@@ -1,1 +1,1 @@
-[]
+[{"json_class":"Book","id":706,"genre":{"json_class":"Genre","id":171,"name":"rock"},"author":{"json_class":"Author","id":97074,"first_name":"Thiago","last_name":"Ponce"},"label":{"json_class":"Label","id":673,"title":"Gift","color":"blue"},"publish_date":"01/01/1999","publisher":"mcgrill","cover_state":"bad"}]

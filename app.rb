@@ -90,7 +90,8 @@ class App # rubocop:disable Metrics/ClassLength
       data = JSON.parse(File.read('games.json'))
       data.each do |new_game|
         genre, author, label = params(new_game)
-        game = Game.new(genre, author, label, new_game['publish_date'], new_game['multiplayer'], new_game['last_played_at'])
+        game = Game.new(genre, author, label, new_game['publish_date'], new_game['multiplayer'],
+                        new_game['last_played_at'])
         game.id = new_game['id']
         game.archived = new_game['archived']
         @games << game
@@ -123,7 +124,11 @@ class App # rubocop:disable Metrics/ClassLength
   end
 
   # Option 5:
-  def create_label(title, color)
+  def create_label
+    puts 'Title of the label:'
+    title = gets.chomp
+    puts 'Color of the label:'
+    color = gets.chomp
     @labels << Label.new(title, color)
   end
 
@@ -149,8 +154,18 @@ class App # rubocop:disable Metrics/ClassLength
   end
 
   # Option 7:
-  def create_book(genre, author, label, publish_date, publisher, cover_state) # rubocop:disable Metrics/ParameterLists
+  def create_book
+    genre = define_genre
+    author = define_author
+    label = define_label
+    puts 'When was this book published?'
+    publish_date = define_date
+    puts 'Insert publisher'
+    publisher = gets.chomp
+    puts 'Insert cover state'
+    cover_state = gets.chomp
     @books << Book.new(genre, author, label, publish_date, publisher, cover_state)
+    puts 'Book was created succesfully'
   end
 
   # Option 2:
@@ -259,5 +274,6 @@ class App # rubocop:disable Metrics/ClassLength
     File.write('games.json', JSON.generate(@games))
     File.write('authors.json', JSON.generate(@authors))
     File.write('music_albums.json', JSON.generate(@music_albums))
+    # abort('Thanks for using the app, see you later!')
   end
 end
