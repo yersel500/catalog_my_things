@@ -35,6 +35,18 @@ To run the tests on the project,
 - Twitter: [@LeccaJoaquin](https://twitter.com/LeccaJoaquin)
 - LinkedIn: [Joaquín Garrido Lecca Zanetti](https://www.linkedin.com/in/joaquin-garrido-lecca-zanetti/)
 
+
+### 👤 Yersel Hurtado
+- GitHub: [@yersel500](https://github.com/yersel500/) 
+- Twitter: [@YerselHurtado](https://twitter.com/YerselHurtado)
+- LinkedIn: [Yersel Hurtado](https://www.linkedin.com/in/yersel-hurtado/) 
+
+
+### 👤 Thiago Allan Porro Ponce 
+- GitHub: [@Thi-Ponce](https://github.com/Thi-Ponce)
+- Twitter: [@Thi_ponce](https://twitter.com/Thi_ponce)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/thiago-ponce) 
+
  ## 🤝 Contributing
 
  Contributions, issues, and feature requests are welcome!
