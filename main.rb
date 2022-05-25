@@ -5,7 +5,7 @@ require './book'
 require 'json'
 
 def create_book_ui(catalog)
-  puts 'Enter genre'
+  puts 'Select genre'
   genre = gets.chomp
   puts 'Enter author'
   author = gets.chomp

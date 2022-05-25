@@ -23,10 +23,10 @@ class App # rubocop:disable Metrics/ClassLength
     if File.exist?('music_albums.json')
       data = JSON.parse(File.read('music_albums.json'))
       data.each do |album|
-        music_albums = MusicAlbum.new(album['genre'], album['author'], album['label'], album['publish_date'],
-                                      album['on_spotify'])
-        music_albums.id = album['id']
-        @books << music_albums
+        music_album = MusicAlbum.new(album['genre'], album['author'], album['label'], album['publish_date'],
+                                     album['on_spotify'])
+        music_album.id = album['id']
+        @music_albums << music_album
       end
     else
       []
@@ -37,7 +37,7 @@ class App # rubocop:disable Metrics/ClassLength
     if File.exist?('genres.json')
       data = JSON.parse(File.read('genres.json'))
       data.each do |genre|
-        my_genre = Genre.new(genre['title'], genre['color'])
+        my_genre = Genre.new(genre['name'])
         my_genre.id = genre['id']
         @genres << my_genre
       end
@@ -104,9 +104,9 @@ class App # rubocop:disable Metrics/ClassLength
   def load_data
     load_labels
     load_genres
+    load_authors
     load_books
     load_games
-    load_authors
     load_albums
   end
 
@@ -125,20 +125,15 @@ class App # rubocop:disable Metrics/ClassLength
 
   # Option 8:
   def create_album
-    puts "Genre: \n"
-    genre = gets.chomp
-    puts "Author: \n"
-    author = gets.chomp
-    puts "Select a label from the list: \n"
-    list_labels
-    label = @labels[gets.chomp.to_i]
+    genre = define_genre
+    author = define_author
+    label = define_label
     puts "When was this album published? \n"
-    puts 'MM-DD-YYYY: '
-    publish_date = gets.chomp
+    publish_date = define_date
     puts "Is this album on Spotify? \n"
     on_spotify = define_boolean
     @music_albums << MusicAlbum.new(genre, author, label, publish_date, on_spotify)
-    puts "Album from #{author} succesfully created!"
+    puts "Album from #{author.first_name} succesfully created!"
   end
 
   # Option 7:
@@ -160,7 +155,7 @@ class App # rubocop:disable Metrics/ClassLength
 
   # Option 4:
   def list_albums
-    @music_albums.each { |album| puts "#{album.author} #{album.on_spotify}" }
+    @music_albums.each { |album| puts "#{album.author['first_name']} #{album.genre['name']}" }
   end
 
   # option 1:
@@ -172,7 +167,7 @@ class App # rubocop:disable Metrics/ClassLength
     return puts 'There are no games yet' if @games.empty?
 
     @games.each_with_index do |game, index|
-      puts "#{index}) ID: #{game.id}, Genre: #{game.genre}, Author: #{game.author},
+      puts "#{index}) ID: #{game.id}, Genre: #{game.genre.name}, Author: #{game.author.first_name},
       Publish date: #{game.publish_date}, Multiplayer: #{game.multiplayer},
       Last Played: #{game.last_played_at}"
     end
