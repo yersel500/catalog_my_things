@@ -39,11 +39,15 @@ def options
   2) List all labels
   3) List all genres
   4) List all albums
-  5) Add a label
-  6) Add a genre
-  7) Add a book
-  8) Add an album
-  9) Exit'
+  5) List all authors
+  6) List all games
+  7) Add a label
+  8) Add a genre
+  9) Add a book
+  10) Add an album
+  11) Add a game
+  12) Add an author
+  13) Exit'
   gets.chomp
 end
 
@@ -59,14 +63,22 @@ def run(catalog) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLe
     when '4'
       catalog.list_albums
     when '5'
-      create_label_ui(catalog)
+      catalog.list_authors
     when '6'
-      catalog.create_genre
+      catalog.list_games
     when '7'
-      create_book_ui(catalog)
+      create_label_ui(catalog)
     when '8'
-      catalog.create_album
+      catalog.create_genre
     when '9'
+      create_book_ui(catalog)
+    when '10'
+      catalog.create_album
+    when '11'
+      catalog.create_game
+    when '12'
+      catalog.create_author
+    when '13'
       catalog.save_data
       break
     end
