@@ -11,4 +11,12 @@ class Genre
     item.label = self
     @items << item
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'id' => @id,
+      'name' => @name
+    }.to_json(*args)
+  end
 end

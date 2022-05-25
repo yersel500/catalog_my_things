@@ -3,10 +3,11 @@ require './item_class'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(genre, author, label, publish_date, multiplayer, last_played_at, archived: false) # rubocop:disable Metrics/ParameterLists
+  def initialize(genre, author, label, publish_date, multiplayer, last_played_at) # rubocop:disable Metrics/ParameterLists
     super(genre, author, label, publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+    @archived = false
   end
 
   def can_be_archived?

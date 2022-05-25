@@ -1,1 +1,1 @@
-[{"json_class":"Game","id":541,"genre":"Shooter","author":"Blizz","label":{"json_class":"Label","id":673,"title":"Gift","color":"blue"},"publish_date":"01/01/2005","multiplayer":true,"last_played_at":"01/01/2010","archived":false}]
+[{"json_class":"Game","id":588,"genre":null,"author":{"json_class":"Author","id":36929,"first_name":"Joaquin","last_name":"Garrido"},"label":{"json_class":"Label","id":673,"title":"Gift","color":"blue"},"publish_date":"01/01/2005","multiplayer":true,"last_played_at":"01/01/2010","archived":false}]
