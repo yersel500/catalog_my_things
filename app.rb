@@ -283,7 +283,7 @@ class App # rubocop:disable Metrics/ClassLength
   def create_game
     genre, author, label, publish_date, multiplayer, last_played_at = game_details
     @games << Game.new(genre, author, label, publish_date, multiplayer, last_played_at)
-    puts "Game by #{author} succesfully created!"
+    puts "#{genre.name} game by #{author.name} succesfully created!"
   end
 
   def create_author
