@@ -1,6 +1,6 @@
 class Author
   attr_reader :first_name, :last_name, :item_class
-  attr_accessor :id
+  attr_accessor :id, :items
 
   def initialize(first_name, last_name)
     @id = rand(1..100_000)

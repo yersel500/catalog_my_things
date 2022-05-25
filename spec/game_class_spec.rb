@@ -33,11 +33,7 @@ describe 'Game' do
     expect(@game.last_played_at).to eq('01/01/2010')
   end
 
-  it 'creates a game with the correct archive status' do
-    expect(@game.archived).to eq(false)
-  end
-
-  it 'returns true for can be archived' do
-    expect(@game.genre).to eq('Shooter')
+  it 'can be archived' do
+    expect(@game.can_be_archived?).to be true
   end
 end

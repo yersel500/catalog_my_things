@@ -9,7 +9,7 @@ class MusicAlbum < Item
   end
 
   def can_be_archived?
-    @publish_date >= 10 && @on_spotify
+    super() && @on_spotify
   end
 
   def to_json(*args)
