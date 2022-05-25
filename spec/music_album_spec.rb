@@ -2,7 +2,7 @@ require './music_album'
 
 describe 'MusicAlbum' do
   before :each do
-    @album = MusicAlbum.new('Metal', 'Korn', 'New', '09/13/2019', true)
+    @album = MusicAlbum.new('Metal', 'Korn', 'New', '09-13-2019', true)
   end
 
   it 'is an instance of itself' do
@@ -20,14 +20,14 @@ describe 'MusicAlbum' do
   end
 
   it 'creates an album with the correct date' do
-    expect(@album.publish_date).to eq('09/13/2019')
+    expect(@album.publish_date).to eq('09-13-2019')
   end
 
   it 'creates an album with the correct spotify parameter' do
-    expect(@album.on_spotify).to be_truthy
+    expect(@album.on_spotify).to be true
   end
 
   it 'can be archived' do
-    expect(@album.can_be_archived?).to be_truthy
+    expect(@album.can_be_archived?).to be false
   end
 end

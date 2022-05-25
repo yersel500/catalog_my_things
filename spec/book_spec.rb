@@ -2,7 +2,7 @@ require_relative '../book'
 
 describe Book do
   before(:each) do
-    @book = Book.new('finance', 'Robert', 'Gift', '2022', 'mcgrill', 'good')
+    @book = Book.new('finance', 'Robert', 'Gift', '01-01-2020', 'mcgrill', 'good')
   end
   it 'Verify the genre of book' do
     expect(@book.genre).to eq('finance')
@@ -17,7 +17,7 @@ describe Book do
   end
 
   it 'Verify the publish date of book' do
-    expect(@book.publish_date).to eq('2022')
+    expect(@book.publish_date).to eq('01-01-2020')
   end
 
   it 'Verify the publisher of book' do
