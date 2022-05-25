@@ -187,7 +187,9 @@ class App # rubocop:disable Metrics/ClassLength
 
   # option 1:
   def list_books
-    @books.each { |book| puts "#{book.author.first_name} #{book.publisher}" }
+    @books.each_with_index do |book, index|
+      puts "#{index}) #{book.genre.name} #{book.author.first_name} #{book.publisher}"
+    end
   end
 
   def list_games
