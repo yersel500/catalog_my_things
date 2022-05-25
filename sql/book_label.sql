@@ -22,3 +22,4 @@ INSERT INTO labels(title, color) VALUES ('New', 'green');
 INSERT INTO books (genre, author, label_id, publish_date, archived, publisher, cover_state) VALUES ('finance', 'Robert', 1, DATE '2022-01-05', false,'mcgrill', 'good');
 
 INSERT INTO books (genre, author, label_id, publish_date, archived, publisher, cover_state) VALUES('fiction', 'Maya', 2, DATE '2020-05-09', true,'star', 'bad');
+
