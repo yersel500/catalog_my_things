@@ -37,13 +37,16 @@ def options
   Please select a value:
   1) List all books
   2) List all labels
-  3) Add a label
-  4) Add a book
-  5) Exit'
+  3) List all authors
+  4) List all games
+  5) Add a label
+  6) Add a book
+  7) Add a game
+  8) Exit'
   gets.chomp
 end
 
-def run(catalog)
+def run(catalog) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
   loop do
     case options
     when '1'
@@ -51,10 +54,16 @@ def run(catalog)
     when '2'
       catalog.list_labels
     when '3'
-      create_label_ui(catalog)
+      catalog.list_authors
     when '4'
-      create_book_ui(catalog)
+      catalog.list_games
     when '5'
+      create_label_ui(catalog)
+    when '6'
+      create_book_ui(catalog)
+    when '7'
+      catalog.create_game
+    when '8'
       catalog.save_data
       break
     end
