@@ -30,6 +30,12 @@ class App # rubocop:disable Metrics/ClassLength
     [genre, author, label]
   end
 
+  def params_exists?
+    abort('There are no genres yet, try adding one! => 10') if @genres.empty?
+    abort('There are no labels yet, try adding one! => 11') if @labels.empty?
+    abort('There are no authors yet, try adding one! => 12') if @authors.empty?
+  end
+
   def load_albums
     if File.exist?('music_albums.json')
       data = JSON.parse(File.read('music_albums.json'))
@@ -125,16 +131,17 @@ class App # rubocop:disable Metrics/ClassLength
 
   # Option 5:
   def create_label
-    puts 'Title of the label:'
+    puts 'Input the title for this label:'
     title = gets.chomp
-    puts 'Color of the label:'
+    puts 'Input the color for this label:'
     color = gets.chomp
     @labels << Label.new(title, color)
+    puts "Label #{title} (#{color}) created successfully!"
   end
 
   # Option 6:
   def create_genre
-    puts "Name of the genre: \n"
+    puts 'Input the name for this genre:'
     name = gets.chomp
     @genres << Genre.new(name)
     puts "Genre #{name} succesfully created!"
@@ -142,53 +149,71 @@ class App # rubocop:disable Metrics/ClassLength
 
   # Option 8:
   def create_album
-    genre = define_genre
-    author = define_author
-    label = define_label
-    puts "When was this album published? \n"
-    publish_date = define_date
-    puts "Is this album on Spotify? \n"
-    on_spotify = define_boolean
+    params_exists?
+    genre = select_genre
+    author = select_author
+    label = select_label
+    puts 'When was this album published?'
+    publish_date = select_date
+    puts 'Is this album on Spotify?'
+    on_spotify = select_boolean
     @music_albums << MusicAlbum.new(genre, author, label, publish_date, on_spotify)
-    puts "Album from #{author.first_name} succesfully created!"
+    puts "#{genre.name} album from #{author.first_name} succesfully created!"
   end
 
   # Option 7:
   def create_book
-    genre = define_genre
-    author = define_author
-    label = define_label
+    params_exists?
+    genre = select_genre
+    author = select_author
+    label = select_label
     puts 'When was this book published?'
-    publish_date = define_date
+    publish_date = select_date
     puts 'Insert publisher'
     publisher = gets.chomp
-    puts 'Insert cover state'
+    puts 'How is cover state (good, medium, bad)'
     cover_state = gets.chomp
     @books << Book.new(genre, author, label, publish_date, publisher, cover_state)
-    puts 'Book was created succesfully'
+    puts "#{genre.name} book from #{author.first_name} succesfully created!"
   end
 
   # Option 2:
   def list_labels
-    @labels.each { |label| print "#{label.title} " }
+    puts 'All labels in the app:'
+    @labels.each_with_index do |label, index|
+      puts "(#{index + 1}) called: #{label.title} (color #{label.color})"
+    end
     puts ''
   end
 
   # Option 3:
   def list_genres
-    @genres.each { |genre| print "#{genre.name} " }
+    puts 'All genres in the app:'
+    @genres.each_with_index do |genre, index|
+      puts "(#{index + 1}) #{genre.name}"
+    end
     puts ''
   end
 
   # Option 4:
   def list_albums
-    @music_albums.each { |album| puts "#{album.author.first_name} " }
+    return puts 'There are no music albums yet' if @music_albums.empty?
+
+    @music_albums.each_with_index do |album, index|
+      puts "(#{index}) on #{album.publish_date}, #{album.author.first_name} #{album.author.last_name}"
+      puts "    created a #{album.genre.name} album which is on spotify! (#{album.on_spotify}) now it is #{album.label.title}"
+      puts ''
+    end
   end
 
   # option 1:
   def list_books
+    return puts 'There are no books yet' if @books.empty?
+
     @books.each_with_index do |book, index|
-      puts "#{index}) #{book.genre.name} #{book.author.first_name} #{book.publisher}"
+      puts "(#{index}) on #{book.publish_date}, #{book.author.first_name} #{book.author.last_name}"
+      puts "    created a #{book.genre.name} book thanks to #{book.publisher}, now it is #{book.label.title}"
+      puts ''
     end
   end
 
@@ -196,55 +221,56 @@ class App # rubocop:disable Metrics/ClassLength
     return puts 'There are no games yet' if @games.empty?
 
     @games.each_with_index do |game, index|
-      puts "#{index}) ID: #{game.id}, Genre: #{game.genre.name}, Author: #{game.author.first_name},
-      Publish date: #{game.publish_date}, Multiplayer: #{game.multiplayer},
-      Last Played: #{game.last_played_at}"
+      puts "(#{index}) on #{game.publish_date}, #{game.author.first_name} #{game.author.last_name}"
+      puts "    created a #{game.genre.name} game, last played on #{game.last_played_at} (#{game.label.title})"
     end
   end
 
   def list_authors
+    puts 'All authors in the app:'
     @authors.each_with_index do |author, index|
-      puts "#{index}) First Name: #{author.first_name}, Last Name: #{author.last_name}"
+      puts "(#{index + 1}) First Name: #{author.first_name}, Last Name: #{author.last_name}"
     end
   end
 
   def game_details
-    genre = define_genre
-    author = define_author
-    label = define_label
-    puts "When was this game published? \n"
-    publish_date = define_date
-    puts "Is this game multiplayer? \n"
-    multiplayer = define_boolean
-    puts "When was this game last played? \n"
-    last_played_at = define_date
+    params_exists?
+    genre = select_genre
+    author = select_author
+    label = select_label
+    puts 'When was this game published?'
+    publish_date = select_date
+    puts 'Is this game multiplayer?'
+    multiplayer = select_boolean
+    puts 'When was this game last played?'
+    last_played_at = select_date
     [genre, author, label, publish_date, multiplayer, last_played_at]
   end
 
-  def define_author
-    puts "Author: \n"
+  def select_author
+    puts 'Select an author from the list:'
     list_authors
     @authors[gets.chomp.to_i]
   end
 
-  def define_genre
-    puts "Genre: \n"
+  def select_genre
+    puts 'Select a genre from the list:'
     list_genres
     @genres[gets.chomp.to_i]
   end
 
-  def define_label
-    puts "Select a label from the list: \n"
+  def select_label
+    puts 'Select an label from the list:'
     list_labels
     @labels[gets.chomp.to_i]
   end
 
-  def define_date
+  def select_date
     puts 'MM/DD/YYYY: '
     gets.chomp
   end
 
-  def define_boolean
+  def select_boolean
     puts 'y/n: '
     case gets.chomp
     when 'y'
@@ -266,7 +292,7 @@ class App # rubocop:disable Metrics/ClassLength
     puts "Last Name: \n"
     last_name = gets.chomp
     @authors << Author.new(first_name, last_name)
-    puts 'Author created successfully!'
+    puts "#{first_name} #{last_name} successfully added to the list of authors!"
   end
 
   def save_data
