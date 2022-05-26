@@ -2,7 +2,7 @@ require './item_class'
 require 'json'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :id
+  attr_reader :publisher, :cover_state
 
   def initialize(genre, author, label, publish_date, publisher, cover_state) # rubocop:disable Metrics/ParameterLists
     super(genre, author, label, publish_date)
